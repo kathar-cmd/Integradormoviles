@@ -1,59 +1,35 @@
 package com.example.model;
 
-import java.time.LocalDateTime;
-
 public class Usuario {
-    private Long id; // para que sea autogenerado por la BD
+    private String idUsuario;
     private String nombre;
-    private String apellido;
-    private String email;
-    private String telefono;
-    private String direccion;
-    private String rol; // 'admin', 'usuario', etc.
-    private String estado; // 'activo', 'inactivo', 'baneado'
-    private LocalDateTime fechaRegistro;
+    private int documento;
+    private String rol;
+    private String idContacto;
+    private String tipoDocumento;
 
-    // ===================
-    // Constructor completo
-    // ===================
-    public Usuario(Long id, String nombre, String apellido, String email, String telefono,
-            String direccion, String rol, String estado, LocalDateTime fechaRegistro) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.rol = rol;
-        this.estado = estado;
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    // ===================
-    // Constructor sin ID
-    // (para insertar nuevos usuarios sin ID)
-    // ===================
-    public Usuario(String nombre, String apellido, String email, String telefono,
-            String direccion, String rol, String estado, LocalDateTime fechaRegistro) {
-        this(null, nombre, apellido, email, telefono, direccion, rol, estado, fechaRegistro);
-    }
-
-    // ===================
     // Constructor vacío
-    // ===================
     public Usuario() {
-        this.fechaRegistro = LocalDateTime.now();
+        this.tipoDocumento = "Cedula";
     }
 
-    // ===================
-    // Getters y setters
-    // ===================
-    public Long getId() {
-        return id;
+    // Constructor con todos los parámetros
+    public Usuario(String idUsuario, String nombre, int documento, String rol, String idContacto, String tipoDocumento) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.documento = documento;
+        this.rol = rol;
+        this.idContacto = idContacto;
+        this.tipoDocumento = tipoDocumento != null ? tipoDocumento : "Cedula";
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    // Getters y Setters
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {
@@ -64,36 +40,12 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public int getDocumento() {
+        return documento;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDocumento(int documento) {
+        this.documento = documento;
     }
 
     public String getRol() {
@@ -104,24 +56,20 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getIdContacto() {
+        return idContacto;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setIdContacto(String idContacto) {
+        this.idContacto = idContacto;
     }
 
-    public LocalDateTime getFechaRegistro() {
-        return fechaRegistro;
+    public String getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
-
-    @Override
-    public String toString() {
-        return "Usuario [id=" + id + ", nombre=" + nombre + ", email=" + email + ", rol=" + rol + "]";
-    }
+    
 }
