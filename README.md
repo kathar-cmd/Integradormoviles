@@ -38,7 +38,7 @@ El proyecto está diseñado bajo una arquitectura en 3 capas:
 
 ## 📊 Modelo Entidad Relación
 
-![Modelo Entidad Relación](../proyecto-integrador-b1-2026-2/doc/mersql.png)
+![Modelo Entidad Relación](doc/mersql.png)
 
 ---
 
