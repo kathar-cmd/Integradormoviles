@@ -10,13 +10,12 @@ public class Prestamo {
     private LocalDate fechaEntrega;
     private int cantidadLibros;
 
-    // Constructor vacío
     public Prestamo() {
         this.fechaPrestamo = LocalDate.now();
     }
 
-    // Constructor con todos los parámetros
-    public Prestamo(String idPrestamo, String idUsuario, String idLibro, LocalDate fechaPrestamo, LocalDate fechaEntrega, int cantidadLibros) {
+    public Prestamo(String idPrestamo, String idUsuario, String idLibro, LocalDate fechaPrestamo,
+            LocalDate fechaEntrega, int cantidadLibros) {
         this.idPrestamo = idPrestamo;
         this.idUsuario = idUsuario;
         this.idLibro = idLibro;
@@ -25,7 +24,6 @@ public class Prestamo {
         this.cantidadLibros = cantidadLibros;
     }
 
-    // Getters y Setters
     public String getIdPrestamo() {
         return idPrestamo;
     }
