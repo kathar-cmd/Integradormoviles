@@ -1,42 +1,69 @@
-# Sistema de Préstamo de Libros - Biblioteca CESDE
+# 📚 Sistema de Préstamo de Libros - Biblioteca CESDE
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Versión](https://img.shields.io/badge/versi%C3%B3n-1.0.0-blue)
 ![Estado](https://img.shields.io/badge/estado-en%20desarrollo-yellow)
+![Build](https://img.shields.io/badge/build-Maven-C71A36?logo=apachemaven&logoColor=white)
+![Java](https://img.shields.io/badge/Java-25-orange?logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1.1-6DB33F?logo=springboot&logoColor=white)
+![Vaadin](https://img.shields.io/badge/Vaadin-25.3.0-00B4F0?logo=vaadin&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-2022-CC2927?logo=microsoftsqlserver&logoColor=white)
+
+Sistema web para digitalizar y automatizar la gestión de préstamos de libros de la biblioteca del CESDE.
 
 ---
 
 ## 📄 Resumen Ejecutivo
 
 ### Descripción Técnica del Problema
-Actualmente, el proceso de préstamo de libros en la biblioteca del CESDE se gestiona de manera manual mediante registros físicos, lo cual genera graves deficiencias operativas y de seguridad:
-- **Falta de Trazabilidad:** La ausencia de un registro digitalizado impide conocer en tiempo real la ubicación exacta de los ejemplares y la identidad del usuario responsable, incrementando el riesgo de pérdida o hurto.
-- **Ausencia de Automatización de Notificaciones:** No existe un sistema de alertas que identifique o notifique las fechas de vencimiento de los préstamos, lo que deriva en entregas extemporáneas y retrasos continuos en las devoluciones.
-- **Ineficiencia y Errores en la Captura de Datos:** La toma manual de datos de contacto de los usuarios resulta lenta, ineficiente y propensa a errores tipográficos, lo que dificulta las gestiones de cobro, rastreo y recuperación de activos.
+
+Actualmente, el préstamo de libros en la biblioteca del CESDE se gestiona de manera manual mediante registros físicos, lo cual genera deficiencias operativas y de seguridad:
+
+- **Falta de trazabilidad:** sin un registro digitalizado no se conoce en tiempo real la ubicación de los ejemplares ni la identidad del usuario responsable, lo que incrementa el riesgo de pérdida o hurto.
+- **Ausencia de notificaciones automáticas:** no existe un mecanismo que identifique o avise las fechas de vencimiento, lo que deriva en entregas extemporáneas y retrasos continuos.
+- **Errores en la captura de datos:** la toma manual de datos de contacto es lenta y propensa a errores tipográficos, lo que dificulta el cobro, el rastreo y la recuperación de los libros.
 
 ### Solución Propuesta
-Diseño e implementación de un sistema web automatizado de gestión de préstamos de biblioteca con arquitectura orientada a la persistencia de datos digitalizada. El sistema permitirá:
-- **Centralización en Base de Datos Relacional:** Registro digitalizado e inmediato del 100% de los préstamos activos, inventario de ejemplares y perfiles de usuarios con sus respectivos datos de contacto validados.
-- **Control de Trazabilidad y Estado:** Monitoreo en tiempo real del estado de cada libro (disponible, prestado, en mora).
-- **Gestión de Alertas y Vencimientos:** Motor de control de fechas límite para identificar de manera automática los préstamos vencidos y optimizar los procesos de notificación y recuperación.
+
+Diseño e implementación de un sistema web de gestión de préstamos con persistencia de datos digitalizada. El sistema permite:
+
+- **Centralización en base de datos relacional:** registro inmediato de los préstamos activos, el inventario de ejemplares y los perfiles de usuario con datos de contacto validados.
+- **Control de trazabilidad y estado:** monitoreo en tiempo real del estado de cada libro (`DISPONIBLE`, `PRESTADO`, `EN_MORA`).
+- **Gestión de vencimientos:** control de fechas límite que identifica automáticamente los préstamos vencidos y facilita su notificación y recuperación.
 
 ### Valor del Sistema
-- **Reducción de Pérdidas:** Mitigación de al menos un 80% en los casos de extravío, deterioro o pérdida no trazable de libros.
-- **Optimización Operativa:** Eliminación del margen de error humano en el registro de datos y reducción drástica de los tiempos de atención en taquilla.
-- **Control Total del Inventario:** Visibilidad y control del 100% del catálogo físico de la biblioteca en tiempo real, garantizando la recuperación oportuna de los activos institucionales.
+
+- **Reducción de pérdidas:** meta de mitigar al menos un 80 % de los casos de extravío, deterioro o pérdida no trazable.
+- **Optimización operativa:** eliminación del error humano en el registro de datos y menor tiempo de atención en taquilla.
+- **Control total del inventario:** visibilidad en tiempo real del 100 % del catálogo físico, con recuperación oportuna de los activos institucionales.
 
 ---
 
 ## 🏗️ Arquitectura
 
-El proyecto está diseñado bajo una arquitectura en 3 capas:
+El sistema sigue una **arquitectura en 3 capas**:
 
-- **Capa de Presentación (Frontend):** Responsable de las interfaces gráficas y la interacción con los bibliotecarios y estudiantes mediante Vaadin Flow.
-- **Capa de Lógica (Backend):** Encargada de gestionar la lógica de préstamos, validación de inventarios y cálculo de estados de mora en Java.
-- **Capa de Datos (Database):** Motor relacional SQL Server encargado de garantizar la persistencia e integridad de los datos.
+```
+┌──────────────────────────────────────────────────────┐
+│  CAPA DE PRESENTACIÓN  ·  Vaadin Flow 25             │
+│  Interfaces para bibliotecarios y estudiantes        │
+├──────────────────────────────────────────────────────┤
+│  CAPA DE LÓGICA  ·  Java 25 + Spring Boot            │
+│  Reglas de préstamo, validación de inventario, mora  │
+├──────────────────────────────────────────────────────┤
+│  CAPA DE DATOS  ·  SQL Server 2022                   │
+│  Persistencia e integridad referencial               │
+└──────────────────────────────────────────────────────┘
+```
+
+| Capa | Responsabilidad |
+|---|---|
+| **Presentación (Frontend)** | Interfaces gráficas e interacción con bibliotecarios y estudiantes mediante Vaadin Flow. |
+| **Lógica (Backend)** | Gestión de préstamos, validación de inventarios y cálculo de estados de mora en Java. |
+| **Datos (Database)** | Motor relacional SQL Server que garantiza la persistencia e integridad de los datos. |
 
 ---
 
-## 📊 Modelo Entidad Relación
+## 📊 Modelo de Datos
 
 ![Modelo Entidad Relación](doc/mersql.png)
 
@@ -44,37 +71,63 @@ El proyecto está diseñado bajo una arquitectura en 3 capas:
 
 ## 🛠️ Stack Tecnológico
 
-- **Lenguaje principal:** Java 17
-- **Framework de interfaz:** Vaadin Flow
-- **Base de Datos:** SQL Server 2022
-- **Gestión de dependencias:** Apache Maven
+| Componente | Tecnología | Versión |
+|---|---|---|
+| Lenguaje | Java (JDK) | 25 |
+| Framework base | Spring Boot (`spring-boot-starter-parent`) | 4.1.1 |
+| Framework de interfaz | Vaadin Flow (`vaadin`, `vaadin-spring-boot-starter`) | 25.3.0 |
+| Base de datos | Microsoft SQL Server | 2022 |
+| Pruebas | `spring-boot-starter-test`, `browserless-test-spring` | Gestionadas por Spring Boot / Vaadin |
+| Gestión de dependencias y build | Apache Maven | Definido por el `pom.xml` |
+| Control de versiones | Git / GitHub | - |
+
+> Las versiones de Java, Spring Boot y Vaadin corresponden a las declaradas en el `pom.xml`.
 
 ---
 
 ## ⚙️ Guía de Configuración
 
 ### Pre-requisitos
-* Java JDK 17 instalado.
-* SQL Server y SQL Server Management Studio (SSMS).
-* Git instalado en el equipo.
+
+- Java JDK 25 instalado.
+- SQL Server y SQL Server Management Studio (SSMS).
+- Git instalado en el equipo.
+- Bash instalado en el equipo
+
+### Variables de entorno
+
+Por el momento el proyecto no requiere variables de entorno. Se documentarán aquí cuando se configure la conexión a la base de datos.
 
 ### Pasos para ejecución local
 
-git clone https://github.com/kathar-cmd/Proyecto-Integrador-G1M.git
+1. Clonar el repositorio:
+
+   ```bash
+   git clone https://github.com/kathar-cmd/Integradormoviles.git
+   ```
+
+---
 
 ## 🔄 Flujo de Trabajo
 
-Para mantener la organización del equipo, además de las reuniones frecuentes donde distribuimos el trabajo, utilizamos **Git** y **GitHub**. 
-
-Trabajamos directamente sobre el repositorio remoto donde los 3 integrantes somos colaboradores, enviando los avances de manera progresiva mediante *commits* e integrando los cambios desarrollados por cada integrante.
+Además de reuniones frecuentes para distribuir las tareas, usamos **Git** y **GitHub**. Los 3 integrantes somos colaboradores del repositorio remoto y enviamos los avances de forma progresiva mediante *commits*, integrando los cambios de cada integrante a través de ramas y *pull requests*.
 
 ---
 
 ## 📜 Licencia y Créditos
 
 ### Equipo de Trabajo
-* **Líder de Proyecto:** Miguel Ángel Herrera
-* **Desarrolladores Colaboradores:** Juan Lopez, Daniel Machado
+
+| Rol | Integrante |
+|---|---|
+| Líder de Proyecto | Miguel Ángel Herrera |
+| Desarrollador Colaborador | Juan Lopez |
+| Desarrollador Colaborador | Daniel Machado |
 
 ### Créditos
+
 El proyecto fue iniciado a partir de la plantilla base proporcionada por el docente de la asignatura. Se configuró un repositorio colaborativo en GitHub para el desarrollo en equipo.
+
+### Licencia
+
+Este proyecto no cuenta con una licencia formal. Es un proyecto académico desarrollado a partir de una plantilla proporcionada por el docente de la asignatura.
