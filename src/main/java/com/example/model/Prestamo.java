@@ -25,6 +25,7 @@ public class Prestamo {
         this.cantidadLibros = cantidadLibros;
     }
 
+    //Metodos getter y setter
     public String getIdPrestamo() {
         return idPrestamo;
     }
